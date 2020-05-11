@@ -18,7 +18,7 @@ strong { font-family: "Source Sans Pro"; display: block; font-size: 0.9em; font-
 .blocks { margin: 24px; margin-bottom: 24px; border-radius: 5px;   border: 1px solid rgba(0, 0, 0, 0.1); padding: 10px 20px; }
 .eu { width: 30%; height: 30%; border-radius: 50%; display: block; vertical-align: middle; padding: 0 24px;}
 .footer {color: rgba(0, 0, 0, 0.46); text-align: center;}
-
+img.art {width: 100%;}
 
 @media all and (min-width: 1001px) {
   .content { max-width: 628px;}
