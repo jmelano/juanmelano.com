@@ -33,12 +33,7 @@
       <div class="blocks">
 
 
-        <ul class="nav">
-          <li>tw</li>
-          <li>fb</li>
-          <li>ig</li>
-          <li>md</li>
-        </ul>
+
         <p><strong>Follow me at:</strong></p>
 
         <p>Twitter: <a href="https://twitter.com/JuanMelano">@juanmelano</a></p>
@@ -77,17 +72,13 @@
 
 
 
-      <div id="blog" class="blocks blog">
-  <div class="blog__header">
-    <p class="blog__header1">some of my</p>
-    <h2 class="blog__header2">Medium
-      <span class="blog__header2Span">posts</span>
-    </h2>
-  </div>
-  <ul class="blog__slider">
+      <div id="blog" class=" blog">
+        <p><strong>Some of my Medium posts</strong></p>
+
+  <div class="blog__slider">
     Posts go here
-  </ul>
-   
+  </div>
+
 </div>
 
 
@@ -124,20 +115,17 @@
       let output = '';
       posts.forEach((item) => {
          output += `
-         <li class="blog__post">
+         <div class="blog__post">
             <a href="${item.link}">
-               <img src="${item.thumbnail}" class="blog__topImg"></img>
+
                <div class="blog__content">
+               <img src="${item.thumbnail}" class="blog__topImg"></img>
                   <div class="blog_preview">
-                     <p class="blog__title">${shortenText(item.title, 0, 130) }</p>
                      <p class="blog__intro">${  shortenText(toText(item.content),0, 300)+ '...'}</p>
-                  </div>
-                  <div class="blog__info">
-                     <span class="blog__date">${shortenText(item.categories,0 ,10)}</span>
                   </div>
                </div>
             <a/>
-         </li>`
+         </div>`
 
       })
       document.querySelector('.blog__slider').innerHTML = output
