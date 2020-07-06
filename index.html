@@ -31,6 +31,14 @@
 
 <div class="content">
       <div class="blocks">
+
+
+        <ul class="nav">
+          <li>tw</li>
+          <li>fb</li>
+          <li>ig</li>
+          <li>md</li>
+        </ul>
         <p><strong>Follow me at:</strong></p>
 
         <p>Twitter: <a href="https://twitter.com/JuanMelano">@juanmelano</a></p>
@@ -68,9 +76,74 @@
       </div>
 
 
+
+      <div id="blog" class="blocks blog">
+  <div class="blog__header">
+    <p class="blog__header1">some of my</p>
+    <h2 class="blog__header2">Medium
+      <span class="blog__header2Span">posts</span>
+    </h2>
+  </div>
+  <ul class="blog__slider">
+    Posts go here
+  </ul>
+   
+</div>
+
+
       <p class="footer"><small>Made in 2020 - Keep web fast!</small></p>
     </div>
 
   </section>
+
+
+
+  <script>
+
+  fetch('https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@juanmelano')
+   .then((res) => res.json())
+   .then((data) => {
+      // Filter for acctual posts. Comments don't have categories, therefore can filter for items with categories bigger than 0
+      const res = data.items //This is an array with the content. No feed, no info about author etc..
+      const posts = res.filter(item => item.categories.length > 0) // That's the main trick* !
+
+      // Functions to create a short text out of whole blog's content
+      function toText(node) {
+         let tag = document.createElement('div')
+         tag.innerHTML = node
+         node = tag.innerText
+         return node
+      }
+      function shortenText(text,startingPoint ,maxLength) {
+         return text.length > maxLength?
+         text.slice(startingPoint, maxLength):
+         text
+      }
+
+      // Put things in right spots of markup
+      let output = '';
+      posts.forEach((item) => {
+         output += `
+         <li class="blog__post">
+            <a href="${item.link}">
+               <img src="${item.thumbnail}" class="blog__topImg"></img>
+               <div class="blog__content">
+                  <div class="blog_preview">
+                     <p class="blog__title">${shortenText(item.title, 0, 130) }</p>
+                     <p class="blog__intro">${  shortenText(toText(item.content),0, 300)+ '...'}</p>
+                  </div>
+                  <div class="blog__info">
+                     <span class="blog__date">${shortenText(item.categories,0 ,10)}</span>
+                  </div>
+               </div>
+            <a/>
+         </li>`
+
+      })
+      document.querySelector('.blog__slider').innerHTML = output
+})
+
+
+</script>
 </body>
 </html>
