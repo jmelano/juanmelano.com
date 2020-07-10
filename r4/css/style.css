@@ -94,6 +94,11 @@ ul.card_squares {
   padding: 0;
 }
 
+@media (min-width: 768px)
+.ul.card_squares  {
+    max-width: 270px;
+}
+
 .card_squares li {
   padding: 0;
 }
