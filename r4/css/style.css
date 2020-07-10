@@ -7,6 +7,10 @@
   margin-bottom: 1.5em;
 }
 
+.ad {
+  border: 0px solid rgba(0,0,0,0.15) !important;
+}
+
 .card_image {
   width: 100%;
   flex-direction: row;
@@ -136,7 +140,6 @@ ul.card_squares {
 
 .card-input {
   display: flex;
-  grid-column: 2;
 }
 
 
@@ -149,7 +152,7 @@ ul.card_squares {
 .card-input_input {
   flex-grow: 1;
   border: 1px solid rgba(0,0,0,0.15);
-  padding: 1em;
+  padding: 1em 0 1em 1em;
   align-items: center;
   font-size: 16px;
   color: #A5A5A5;
@@ -157,7 +160,7 @@ ul.card_squares {
 }
 
 .card-input_button {
-  padding: 1em 3em;
+  padding: 1em 2em;
   background: #1790E9;
   color: #fff;
   text-transform: uppercase;
