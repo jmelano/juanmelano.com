@@ -89,15 +89,12 @@ ul.card_squares {
   flex-direction: row;
   overflow-x: scroll;
   list-style: none;
-  max-width: 600px;
+  width: 270px;
   margin: 1em 0 0 0;
   padding: 0;
 }
 
-@media (min-width: 768px)
-.ul.card_squares  {
-    max-width: 270px;
-}
+
 
 .card_squares li {
   padding: 0;
