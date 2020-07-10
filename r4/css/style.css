@@ -149,23 +149,31 @@ ul.card_squares {
   padding-top: 1em;
 }
 
-.card-input_input {
-  flex-grow: 1;
+.card-input_input_x {
+  width: 100%;
   border: 1px solid rgba(0,0,0,0.15);
-  padding: 1em 0 1em 1em;
+  padding: 0.7em 0 0.89em 0em;
   align-items: center;
   font-size: 16px;
   color: #A5A5A5;
   flex-grow: 1;
 }
 
-.card-input_button {
+.card-input_button_x {
   padding: 1em 1em;
   background: #1790E9;
   color: #fff;
   text-transform: uppercase;
   font-weight: bold;
   font-size: 14px;
+}
+
+.card-input_input {
+  flex-grow: 1;
+
+}
+
+.card-input_button {
 }
 
 .autor {
