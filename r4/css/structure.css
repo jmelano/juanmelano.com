@@ -114,7 +114,7 @@ width: 440px;padding-bottom: 20px;height:calc(100vh - 55px);overflow-y: scroll;}
 .rv4headli:last-child .rv4htx{padding-right:18px;}
 
 /* boton mimebros*/
-.rv4hlibm{font-size:14px;font-weight:800;line-height:1.05;background-color:#ee7366;color:#fff;border-radius:8px;cursor:pointer;white-space:nowrap;font-size:12px;padding:8px 12px;}
+.rv4hlibm{font-size:14px;font-weight:800;line-height:1.05;background-color:#FF6A5F;color:#fff;border-radius:4px;cursor:pointer;white-space:nowrap;font-size:12px;padding:10px 12px;}
 @media (min-width: 768px){.rv4hlibm{font-size:16px;}}
 @media (min-width: 1024px){.rv4hlibm{transition:opacity .3s;}}
 @media (min-width: 1024px){.rv4hlibm:hover{opacity:0.7;}}
