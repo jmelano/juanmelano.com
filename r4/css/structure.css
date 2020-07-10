@@ -5,7 +5,7 @@
     aside,footer,header,nav{display:block;}
 
     html,body{min-height:100%;height:100%;}
-    body{padding:0;margin:0;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;background-image:none;font-family:'Source Sans Pro', Helvetica, Arial, sans-serif;background-color:#f9f9f9;transition:background-color 0.5s;}
+    body{padding:0;margin:0;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;background-image:none;font-family:'Source Sans Pro', Helvetica, Arial, sans-serif;background-color:#fff;transition:background-color 0.5s;}
 
 
     a{text-decoration:none;cursor:pointer;}
@@ -57,8 +57,8 @@
 /* estilos main */
 
 
-.rv4b1{background-color: #f9f9f9;transition:background-color 0.5s;position:relative;}
-.rv4b1 ::selection{background-color:#168dd9;color:#f9f9f9;}
+.rv4b1{background-color: #fff;transition:background-color 0.5s;position:relative;}
+.rv4b1 ::selection{background-color:#168dd9;color:#fff;}
 
 .rv4b2,.rv4b3{height:45px;}
 @media (min-width: 1024px){.rv4b2,.rv4b3{height:55px;}}
@@ -66,7 +66,7 @@
 
 .rv4b3{font-size:inherit;font-family:inherit;margin:0;padding:0;line-height:inherit;list-style:none;display:flex;-ms-flex:1 0 0%;position:relative;}
 
-.rv4b4{z-index:500;width:100%;background-color:#f9f9f9;color:#000;transition:transform 0.3s, background-color 0.5s;will-change:background-color;border-bottom:solid 1px rgba(0,0,0,0.15);}
+.rv4b4{z-index:500;width:100%;background-color:#fff;color:#000;transition:transform 0.3s, background-color 0.5s;will-change:background-color;border-bottom:solid 1px rgba(0,0,0,0.15);}
 @media print{.rv4b4{position:absolute;border:0;}}
 
 
@@ -125,7 +125,7 @@ width: 440px;padding-bottom: 20px;height:calc(100vh - 55px);overflow-y: scroll;}
 
 /* structura*/
 
-.rv4sc{font-size:18px;font-weight:500;line-height:1.3;background-color:#f9f9f9;border-top:solid 1px rgba(0,0,0,0.15);}
+.rv4sc{font-size:18px;font-weight:500;line-height:1.3;background-color:#fff;border-top:solid 1px rgba(0,0,0,0.15);}
 @media (min-width: 768px){.rv4sc{font-size:20px;}}
 
 
