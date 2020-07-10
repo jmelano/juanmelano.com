@@ -86,7 +86,7 @@ width: 440px;padding-bottom: 20px;height:calc(100vh - 55px);overflow-y: scroll;}
 .menu_botton {display:none;}
 @media (max-width: 1200px){.menu_botton{display:block;}}
 
-.rv4headli{position:relative;z-index:100;}
+.rv4headli{position:relative;z-index:100; }
 .rv4headli._9766a,.rv4headli.rv4hico2,.rv4headli.fef6d,.rv4headli.rv4hlic,.rv4headli.d8c9f,.rv4headli.ca847{display:none;}
 @media (min-width: 1024px){.rv4headli._9766a,.rv4headli.rv4hico2,.rv4headli.fef6d,.rv4headli.rv4hlic,.rv4headli.d8c9f,.rv4headli.ca847{display:block;}}
 @media print{.rv4headli._9766a,.rv4headli.rv4hico2,.rv4headli.fef6d,.rv4headli.rv4hlic,.rv4headli.d8c9f,.rv4headli.ca847{display:none;}}
@@ -110,7 +110,7 @@ width: 440px;padding-bottom: 20px;height:calc(100vh - 55px);overflow-y: scroll;}
 .rv4hico{color:#000;transition:fill .3s;}
 @media (min-width: 1024px){.rv4hico{color: rgba(0,0,0,0.7);}}
 .rv4htx:hover .rv4hico{color: rgba(0,0,0,0.7);}
-.rv4headli:first-child .rv4htx{padding-left:18px;}
+.rv4headli:first-child .rv4htx{padding-left:18px;background: #fff;}
 .rv4headli:last-child .rv4htx{padding-right:18px;}
 
 /* boton mimebros*/
