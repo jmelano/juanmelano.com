@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Juan Melano</title>
+
+
+  <meta property="og:title" content="Juan Melano" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.juanmelano.com" />
+  <meta property="og:image" content="https://juanmelano.com/img/ejim.jpg" />
+
+  <meta property="og:description" content="Personal website" />
+
+  <link rel='stylesheet' href='style.css'>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-633285-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-633285-2');
+</script>
+
+
+
+</head>
+
+<body>
+
+  <section>
+
+    <div class="content">
+
+      <img alt="Juan Melano" class="y ee et eu" src="https://miro.medium.com/fit/c/256/256/2*7m7H4a2_IygPaEDRZQNv-w.jpeg" width="128" height="128">
+
+      <h1>Don't type. <br/><strong>Prototype!</strong></h1>
+
+      <h2>
+        Home of Juan Melano. CEO @ <a href="https://croma.ai">Croma</a> / Special projects @ <a href="https://redaccion.com.ar">RED/ACCIÓN</a> <br/><span>Tags: Media / Startups / Design / Comics / Scripts</span>
+      </h2>
+
+    </div>
+
+      <br/>  <br/>
+      <img class="art" src="img/ejim.jpg"/>
+      <small>A 3D prototype of myself at The Conference, Sweden. 2011.</small>
+
+
+<div class="content">
+      <div class="blocks">
+
+
+
+        <p><strong>Follow me at:</strong></p>
+
+        <p>Twitter: <a href="https://twitter.com/JuanMelano">@juanmelano</a></p>
+        <p>Instagram: <a href="https://www.instagram.com/juan.melano/">@juan.melano</a></p>
+        <p>
+          Medium: <a href="https://medium.com/@juanmelano">@juanmelano</a>
+        </p>
+      </div>
+
+
+      <div class="blocks">
+        <p><strong>When in quarantine I tend to focus on:</strong></p>
+
+        <p>Illustration, comics, and movie scripts.</p>
+
+      </div>
+
+
+      <div class="blocks">
+        <p><strong>Projects I'm active on:</strong></p>
+
+        <p><a href="https://croma.ai">Croma</a>, CEO and co-founder</p>
+        <p><a href="https://redaccion.com.ar">RED/ACCIÓN</a>, founding team</p>
+
+      </div>
+
+
+      <div class="blocks">
+        <p><strong>Past Projects I still care about</strong></p>
+
+        <p><a href="http://comenta.tv">ComentaTV</a>, CEO and founder - (acquired by Wayin / Cheeta Digital)</p>
+        <p><a href="http://www.palermovalley.com/">Palermo Valley</a>, founding team</p>
+        <p>For a comprehensive list <a href="https://www.linkedin.com/in/jmelano">check my LinkedIn</a></p>
+
+      </div>
+
+
+
+      <div id="blog" class=" blog">
+        <p><strong>Some of my Medium posts</strong></p>
+
+  <div class="blog__slider">
+    Posts go here
+  </div>
+
+</div>
+
+
+      <p class="footer"><small>Made in 2020 - Keep web fast!</small></p>
+    </div>
+
+  </section>
+
+
+
+  <script>
+
+  fetch('https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@juanmelano')
+   .then((res) => res.json())
+   .then((data) => {
+      // Filter for acctual posts. Comments don't have categories, therefore can filter for items with categories bigger than 0
+      const res = data.items //This is an array with the content. No feed, no info about author etc..
+      const posts = res.filter(item => item.categories.length > 0) // That's the main trick* !
+
+      // Functions to create a short text out of whole blog's content
+      function toText(node) {
+         let tag = document.createElement('div')
+         tag.innerHTML = node
+         node = tag.innerText
+         return node
+      }
+      function shortenText(text,startingPoint ,maxLength) {
+         return text.length > maxLength?
+         text.slice(startingPoint, maxLength):
+         text
+      }
+
+      // Put things in right spots of markup
+      let output = '';
+      posts.forEach((item) => {
+         output += `
+         <div class="blog__post">
+            <a href="${item.link}">
+
+               <div class="blog__content">
+               <img src="${item.thumbnail}" class="blog__topImg"></img>
+                  <div class="blog_preview">
+                     <p class="blog__intro">${  shortenText(toText(item.content),0, 300)+ '...'}</p>
+                  </div>
+               </div>
+            <a/>
+         </div>`
+
+      })
+      document.querySelector('.blog__slider').innerHTML = output
+})
+
+
+</script>
+</body>
+</html>
