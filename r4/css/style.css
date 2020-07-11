@@ -165,7 +165,7 @@ ul.card_squares {
 
 
 
-button {
+.card-input button {
     display: inline-block;
     border: none;
     padding: 1rem 2rem;
@@ -183,17 +183,17 @@ button {
     -moz-appearance: none;
 }
 
-button:hover,
-button:focus {
+.card-input button:hover,
+.card-input button:focus {
     background: #0053ba;
 }
 
-button:focus {
+.card-input button:focus {
     outline: 1px solid #fff;
     outline-offset: -4px;
 }
 
-button:active {
+.card-input button:active {
     transform: scale(0.99);
 }
 
@@ -322,6 +322,45 @@ ul.hitos li:last-child {
 
 
 /* menu navegacion */
+
+ .searchContainer {
+  display: grid;
+  grid-template-columns:1.5rem 4fr 1fr;
+  width:100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 0.5em 0 1em 0;
+}
+
+.searchContainer:focus-within i {
+  display: none;
+}
+
+.searchContainer:focus-within .searchBox{
+  grid-column:1/4;
+}
+
+.searchContainer:focus-within .searchBox::placeholder {
+  color:transparent;
+}
+
+.searchIcon {
+  padding: 0.5rem;
+  grid-row:1;
+  grid-column:1/2;
+  z-index:2
+}
+
+.searchBox {
+  border: 0;
+  padding: 0.5rem;
+  grid-column:2/4;
+  grid-row:1;
+  outline:none;
+  font-size: 14px;
+}
+
 
 
 
