@@ -355,6 +355,7 @@ ul.hitos li:last-child {
 .searchBox {
   border: 0;
   padding: 0.5rem;
+  padding-left: 3em;
   grid-column:2/4;
   grid-row:1;
   outline:none;
