@@ -1,3 +1,23 @@
+.main_head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 0 1em 0;
+  border-bottom: 1px solid rgba(0,0,0,0.15);
+  margin-bottom: 1.5em;
+}
+
+.fecha {
+  font-weight: bold;
+  font-size: 13px;
+  color: #161616;
+}
+
+.actualizado {
+  font-size: 13px;
+  color: #939393;
+}
+
 .card {
   border-radius: 5px;
   border: 1px solid rgba(0,0,0,0.15);
@@ -5,6 +25,7 @@
   display: flex;
   flex-direction: column;
   margin-bottom: 1.5em;
+  overflow: hidden;
 }
 
 .ad {
@@ -69,7 +90,7 @@
   text-align: right;
 }
 
-.card a.profundizar {
+a.profundizar {
   background: #1790e9;
   color: #fff;
   font-size: 1em;
@@ -258,6 +279,14 @@ ul.hitos li:last-child {
   border-bottom: 1px solid rgba(255, 0, 0, 0.15);
 }
 
+.asideb p {
+  font-size: 16px;
+  padding: 0 0 1em 0;
+  border-bottom: 1px solid rgba(255, 0, 0, 0.15);
+
+  color: #7D8895;
+}
+
 .aside_story {
   margin: 1em 0 2em 0;
 }
@@ -276,4 +305,15 @@ ul.hitos li:last-child {
   font-size: 15px;
   color: #7D8895;
   margin-top: 0.5em;
+}
+
+.asideb_footer {
+  display: flex;
+  margin-bottom: 2em;
+}
+
+.asideb_footer .profundizar {
+  font-size: 16px;
+  margin: 0;
+  width: 100%;
 }
