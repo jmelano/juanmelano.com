@@ -135,7 +135,7 @@ width: 440px;padding-bottom: 20px;height:calc(100vh - 55px);overflow-y: scroll;}
 
 /* aside */
 
-.aside,.asideb{box-sizing:border-box;padding:50px;flex-shrink:0;height:calc(100vh - 55px);width:360px;overflow-y: scroll;}
+.aside,.asideb{box-sizing:border-box;flex-shrink:0;height:calc(100vh - 55px);width:360px;overflow-y: scroll;}
 @media (min-width: 1024px){.aside,.asideb{position:-webkit-sticky;position:sticky;top:56px;}}
 @media (min-width: 1200px){.aside,.asideb{width:calc(18% + 100px);}}
 
