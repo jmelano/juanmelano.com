@@ -472,7 +472,7 @@ ul.hitos li:last-child {
   margin-top: 1em;
   align-items: center;
   color: #7D8895;
-  justify-content: flex-start;
+  justify-content: center;
 }
 
 .more_social ul {
