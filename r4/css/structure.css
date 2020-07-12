@@ -185,3 +185,15 @@ justify-content: center;display: flex;
 .rv4dkl2._793d4{color: #168dd9;}
 .rv4dkl3{margin:auto;width:19px;height:19px;display:block}
 .rv4dkl3._257e1{width:17px;height:17px;display:block}
+
+
+
+
+
+ 
+.svg-icon
+path,
+.svg-icon polygon,
+.svg-icon rect {
+fill: #000;
+}
