@@ -500,3 +500,43 @@ ul.hitos li:last-child {
   padding: 0 1em 0.5em 1em;
   color: #7D8895;
 }
+
+
+
+
+
+
+
+
+
+
+
+.card-container
+{
+
+}
+
+.carda
+{
+
+    transform-style: preserve-3d;
+}
+
+.front,
+.back
+{
+    backface-visibility: hidden;
+}
+
+.front
+{
+}
+
+.back
+{
+    position: absolute;
+
+padding-top: 1em;
+    transform: rotateY(180deg);
+
+}
