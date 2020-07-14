@@ -21,11 +21,13 @@
 .card {
   border-radius: 5px;
   border: 1px solid rgba(0,0,0,0.15);
-  font-size: 18px;
+  font-size: 16px;
   display: flex;
   flex-direction: column;
   margin-bottom: 1.5em;
   overflow: hidden;
+  line-height: 1.4em;
+  font-weight: 300;
 }
 
 .ad {
@@ -43,47 +45,19 @@
   flex-direction: column;
 }
 
-.card .credito {
-  font-size: 12px;
-  color: #7D8895;
-  justify-content: flex-end;
-  text-align: right;
-  padding: 0.5em 1em 0 1em;
-}
-
 .card .texto {
-  padding: 1em;
+  padding: 1em 1.2em 1em 1.2em;
+  font-family: 'Merriweather', serif;
 }
 
-.card_footer {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 1em 0;
+.card .texto strong {
+  font-weight: 900;
 }
 
-.card_footer .autor {
-  width: 50%;
-  padding: 0em 1em;
-  color: ##161616;
-  font-size: 15px;
-  flex-direction: column;
-}
-
-.card_footer .autor a {
-  color: #161616;
-}
-
-.card_footer img {
-  width: 40px;
-  border-radius: 40px;
-  vertical-align:middle;
-}
 
 .card .info {
   width: 50%;
-  padding: 0em 1em;
+  padding: 0 0 1em 0em;
   color: #1790E9;
   font-size: 15px;
   flex-direction: column;
@@ -275,15 +249,15 @@ ul.hitos li:last-child {
   font-size: 15px;
   color: #7D8895;
   text-transform: uppercase;
-  padding: 0 0 1em 0;
-  border-bottom: 1px solid rgba(255, 0, 0, 0.15);
+  padding: 0 0 0 0;
+  margin-bottom: 0;
 }
 
 .asideb p {
   font-size: 16px;
   padding: 0 0 1em 0;
-  border-bottom: 1px solid rgba(255, 0, 0, 0.15);
-
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  margin: 0.6em 0 0 0;
   color: #7D8895;
 }
 
@@ -295,9 +269,13 @@ ul.hitos li:last-child {
   width: 100%;
 }
 
-.aside_tit a {
+.aside_tit {
   font-size: 18px;
   font-weight: bold;
+  color: #161616;
+}
+
+.aside_tit a {
   color: #161616;
 }
 
@@ -367,7 +345,8 @@ ul.hitos li:last-child {
   color: #7D8895;
   text-transform: uppercase;
   padding: 0 0 1em 0;
-  border-bottom: 1px solid rgba(255, 0, 0, 0.15);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  margin-bottom: 1.3em;
 }
 
 .asideb p {
@@ -450,6 +429,7 @@ ul.hitos li:last-child {
   width: 100%;
   display: flex;
   flex-direction: column;
+
 }
 
 .more_info ul {
@@ -468,7 +448,7 @@ ul.hitos li:last-child {
   width: 100%;
   display: flex;
   flex-direction: row;
-  padding: 1em 0;
+  padding: 0 0 1em 0;
   margin-top: 1em;
   align-items: center;
   color: #7D8895;
@@ -518,10 +498,7 @@ ul.hitos li:last-child {
 
 .carda
 {
--webkit-user-select: none;  /* Chrome all / Safari all */
-  -moz-user-select: none;     /* Firefox all */
-  -ms-user-select: none;      /* IE 10+ */
-  user-select: none;          /* Likely future */      
+
     transform-style: preserve-3d;
 }
 
@@ -538,8 +515,8 @@ ul.hitos li:last-child {
 .back
 {
     position: absolute;
-
-padding-top: 1em;
+    right: 0em;
+    padding-top: 1em;
     transform: rotateY(180deg);
 
 }
