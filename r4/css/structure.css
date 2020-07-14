@@ -121,6 +121,8 @@ width: 350px;padding-bottom: 20px;height:calc(100vh - 55px);overflow-y: scroll;}
 .rv4headli:first-child .rv4htx{padding-left:18px;background: #fff;}
 .rv4headli:last-child .rv4htx{padding-right:18px;}
 
+.rv4hico2 strong {color: #FF6A5F;}
+
 /* boton mimebros*/
 .rv4hlibm{font-size:14px;font-weight:800;line-height:1.05;background-color:#FF6A5F;color:#fff;border-radius:4px;cursor:pointer;white-space:nowrap;font-size:12px;padding:10px 12px;}
 @media (min-width: 768px){.rv4hlibm{font-size:16px;}}
@@ -190,7 +192,7 @@ justify-content: center;display: flex;
 
 
 
- 
+
 .svg-icon
 path,
 .svg-icon polygon,
