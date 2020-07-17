@@ -71,9 +71,9 @@
 a.profundizar {
   background: #1790e9;
   color: #fff;
-  font-size: 1em;
+  font-size: 0.8em;
   padding: 1em;
-  margin: 0em 1em 1em 1em;
+  margin: 0em 0.8em 0.8em 0.8em;
   text-align: center;
   text-transform: uppercase;
   font-weight: bold;
@@ -213,26 +213,6 @@ ul.card_squares {
   font-weight: bold;
 }
 
-.autor1 {
-  padding: 1em 0 0em 0em;
-  font-size: 12px;
-  font-weight: normal;
-}
-
-.autor2 {
-  padding: 1em 0 0em 0em;
-  font-size: 12px;
-  font-weight: bold;
-}
-
-.autor3 {
-  font-weight: bold;
-  font-size: 14px;
-}
-
-.autor4 {
-  font-weight: bold;
-}
 
 .autor_cargo {
   font-weight: normal;
