@@ -210,7 +210,7 @@ ul.card_squares {
 .autor {
   padding: 1em 0 0em 0em;
   font-size: 14px;
-  font-weight: bold;
+  font-weight: normal;
 }
 
 .autor_cargo {
