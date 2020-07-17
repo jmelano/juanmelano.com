@@ -213,6 +213,15 @@ ul.card_squares {
   font-weight: bold;
 }
 
+.credito {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0em 1em 0 0em;
+  font-size: 12px;
+  height: 0;
+  color: #7D8895;
+}
+
 
 .autor_cargo {
   font-weight: normal;
@@ -299,8 +308,9 @@ ul.hitos li:last-child {
 }
 
 .asideb_footer .profundizar {
-  font-size: 16px;
+  font-size: 14.4px;
   margin: 0;
+  padding: 0.8em;
   width: 100%;
 }
 
