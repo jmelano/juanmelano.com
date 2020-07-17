@@ -213,6 +213,16 @@ ul.card_squares {
   font-weight: normal;
 }
 
+.autor2 {
+  padding: 1em 0 0em 0em;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.autor3 {
+  font-weight: bold;
+}
+
 .autor_cargo {
   font-weight: normal;
 }
