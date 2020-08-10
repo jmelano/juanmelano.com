@@ -1,0 +1,1231 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="apple-touch-icon" type="image/png" href="https://static.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
+<meta name="apple-mobile-web-app-title" content="CodePen">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111" />
+<title>CodePen - Codepen Showcase: Slack UI</title>
+<link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css'>
+<style>
+:root {
+  --sidebar-bg: rgb(63, 14, 64);
+  --sidebar-divider: rgba(255, 255, 255, 0.3);
+  --font: rgb(28, 29, 28);
+  --font-gray: rgb(97, 96, 97);
+  --gray-lightest: rgb(246,246,246);
+  --gray-outline: rgb(221, 221, 221);
+  --gray-accent: #ddd;
+  --gray-input: rgb(142, 141, 142);
+  --gray-input-dark: rgb(96, 96, 96);
+  --green: rgb(43, 172, 118);
+  --blue: rgb(17, 100, 163);
+  --pink: rgb(224, 30, 90);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 1.1rem;
+}
+
+code {
+  display: inline-block;
+  border: 1px solid var(--gray-outline);
+  background: var(--gray-lightest);
+  color: var(--pink);
+  font-family: monospace;
+  padding: 4px 6px 3px;
+  border-radius: 5px;
+  margin: 0 4px;
+}
+
+input {
+  font-family: 'Lato';
+}
+
+h2 {
+  font-weight: 800;
+}
+
+strong {
+  font-weight: 700;
+}
+
+main {
+  min-width: 600px;
+  max-height: 100vh;
+}
+
+i.circle {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background: var(--green);
+  border-radius: 50%;
+  margin-right: 7px;
+}
+
+.op--80 {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+a.link {
+  color: var(--blue);
+  text-decoration: none;
+  cursor: pointer;
+}
+a.link:hover {
+  text-decoration: underline;
+}
+
+body {
+  background: var(--preview-bg);
+  font-family: "Lato", sans-serif;
+  overflow-y: hidden;
+}
+
+main {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(250px, 18%) 1fr;
+  width: 100%;
+}
+
+.sidebar {
+  background: var(--sidebar-bg);
+  color: #fff;
+}
+.sidebar__head {
+  padding: 20px;
+  border-bottom: 0.5px solid var(--sidebar-divider);
+}
+.sidebar__head h1 {
+  font-weight: 900;
+}
+.sidebar__head__name {
+  margin-top: 5px;
+  font-size: 90%;
+}
+.sidebar .sections__title {
+  padding: 25px 16px 12px;
+}
+.sidebar .sections__title i {
+  font-size: 10px;
+  vertical-align: middle;
+  display: inline-block;
+  margin: -3px 10px 0 -4px;
+}
+.sidebar .sections__item {
+  padding: 8px 16px;
+  display: block;
+  cursor: pointer;
+}
+.sidebar .sections__item span:nth-child(1) {
+  margin-right: 4px;
+}
+.sidebar .sections__item.active {
+  color: #fff;
+  background: var(--blue);
+}
+.sidebar .sections__item.no {
+  pointer-events: none;
+}
+
+.channel {
+  position: relative;
+}
+.channel:not(.active) {
+  display: none;
+}
+.channel__header {
+  padding: 20px;
+  border-bottom: 0.5px solid var(--gray-outline);
+}
+.channel__header__info {
+  color: var(--font-gray);
+  margin-top: 5px;
+  font-size: 90%;
+  white-space: nowrap;
+}
+.channel__header i {
+  color: var(--font-gray);
+  font-size: 13px;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+.channel__header .icon-clock, .channel__header .explanation {
+  position: relative;
+  display: inline-block;
+  margin-left: 9px;
+  padding-left: 9px;
+}
+.channel__header .icon-clock:after, .channel__header .explanation:after {
+  content: "";
+  width: 1.5px;
+  height: 94%;
+  top: 3%;
+  position: absolute;
+  left: 0;
+  background: var(--gray-outline);
+}
+.channel__body {
+  position: relative;
+  max-height: calc(100vh - 160px);
+  overflow-y: auto;
+}
+.channel__body__grouped {
+  margin: 25px 0;
+  position: relative;
+  background-image: linear-gradient(to bottom, transparent 18px, var(--gray-outline) 18px, var(--gray-outline) 19px, transparent 19px);
+}
+.channel__body__grouped:last-child {
+  margin: 25px 0 0;
+}
+.channel__body__day {
+  position: sticky;
+  top: 10px;
+  z-index: 10;
+}
+.channel__body__date {
+  text-align: center;
+  margin: 15px 0;
+}
+.channel__body__date span {
+  background: #fff;
+  font-weight: 700;
+  padding: 10px 18px;
+  border: 1px solid var(--gray-outline);
+  display: inline-block;
+  border-radius: 30px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+.channel__input {
+  margin: 15px auto;
+  border: 1px solid var(--gray-input-dark);
+  width: calc(100% - 30px);
+  border-radius: 4px;
+  padding: 5px;
+  display: flex;
+}
+.channel__input input {
+  border: none;
+  padding: 8px 10px;
+  flex: 1;
+  font-size: 105%;
+  outline: none;
+}
+.channel__input button {
+  flex: 0 0 auto;
+  background: none;
+  border: 0;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 12px 12px 5px;
+  border-radius: 5px;
+}
+.channel__input button:hover {
+  background: var(--gray-lightest);
+}
+
+.message {
+  display: flex;
+  padding: 10px 20px;
+  cursor: default;
+}
+.message:hover {
+  background: var(--gray-lightest);
+}
+.message__profile {
+  flex: 0 0 60px;
+}
+.message__profile img {
+  width: 48px;
+  height: 48px;
+  border-radius: 6px;
+}
+.message__content {
+  flex: 1;
+}
+.message__sender {
+  margin-top: 2px;
+}
+.message__sender .name {
+  font-weight: 900;
+  margin-right: 8px;
+  color: var(--font);
+  text-decoration: none;
+}
+.message__sender .name:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 1em;
+}
+.message__sender .time {
+  font-size: 75%;
+  color: var(--gray-font);
+}
+.message__text {
+  margin: 8px 0 12px;
+}
+.message__text p {
+  line-height: 1.2;
+}
+.message__text p.list {
+  line-height: 1.5;
+}
+.message__link {
+  padding-left: 18px;
+  position: relative;
+}
+.message__link:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: calc(100% - 3px);
+  width: 5px;
+  background: var(--gray-outline);
+  border-radius: 30px;
+}
+.message__link__site {
+  margin: 8px 0;
+}
+.message__link__site img {
+  width: 20px;
+  height: 20px;
+  border-radius: 2px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+.message__link__site span {
+  font-weight: 900;
+  vertical-align: middle;
+}
+.message__link__text {
+  line-height: 1.35;
+}
+.message__link__text p {
+  margin-top: 4px;
+}
+.message__image {
+  margin-top: 10px;
+}
+.message__image img {
+  width: 100%;
+  max-width: 380px;
+  height: 250px;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 4px;
+  border: 1px solid var(--gray-outline);
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #fff;
+  border-radius: 30px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gray-input);
+  border-radius: 30px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gray-input);
+}
+
+#self h2 {
+  margin: 10px 0;
+}
+
+.emoji-roll {
+  position: fixed;
+  z-index: 20;
+  font-size: 10rem;
+  top: 40%;
+  left: -15rem;
+}
+.emoji-roll.active {
+  animation: 2.4s roll forwards;
+}
+
+@keyframes roll {
+  0% {
+    transform: translateX(0) rotate(0turn);
+  }
+  100% {
+    transform: translateX(150vw) rotate(2turn);
+  }
+}
+</style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<main>
+<nav class="sidebar">
+<div class="sidebar__head">
+<h1>Current Matters</h1>
+<div class="sidebar__head__name"><i class="circle"></i><span class="op--80">Juan Melano</span></div>
+</div>
+<div class="sections op--80">
+<div class="sections__title"><i class="icon-arrow-down"></i>Channels</div><a class="sections__item" data-switch="css-anim"> <span># </span><span>random-words</span></a><a class="sections__item" data-switch="css-grid"> <span># </span><span>digital-projects</span></a><a class="sections__item" data-switch="css-illu"> <span># </span><span>illustrations</span></a><a class="sections__item" data-switch="js-things"> <span># </span><span>comics</span></a><a class="sections__item" data-switch="collections"> <span># </span><span>collections</span></a><a class="sections__item active" data-switch="ui-design"> <span># </span><span>about</span></a>
+</div>
+<div class="sections op--80">
+<div class="sections__title"> <i class="icon-arrow-down"></i>Social</div><a class="sections__item no"><i class="circle"></i>Twitter</a><a class="sections__item" data-switch="self"><i class="circle"></i>Instagram</a><a class="sections__item" data-switch="self"><i class="circle"></i>Medium</a><a class="sections__item" data-switch="self"><i class="circle"></i>Linkedin</a>
+</div>
+</nav>
+<section class="main-content">
+<div class="channel active" id="ui-design">
+<div class="channel__header">
+<h2>#ui-design</h2>
+<div class="channel__header__info"> <i class="icon-rocket"></i><span>7 pens</span><span class="explanation">1 hour coding, 5 hours choosing a color palette.</span></div>
+</div>
+<div class="channel__body">
+<div class="channel__body__grouped">
+<div class="channel__body__day">
+<div class="channel__body__date"> <span>January 10, 2019</span></div>
+</div>
+<div class="message">
+<div class="message__profile"><img src="https://pbs.twimg.com/profile_images/930723320210767872/dL1TBczy_400x400.jpg" alt="Profile Picture" /></div>
+<div class="message__content">
+<div class="message__sender"><a class="name" href="https://twitter.com/juanmelano_" target="_blank" rel="noopener">juanmelano</a><span class="time js-time"></span></div>
+<div class="message__text"><a class="link" href="https://codepen.io/oliviale/full/GPXozx" target="_blank" rel="noopener">
+https://codepen.io/oliviale/full/GPXozx</a></div>
+<div class="message__link">
+<div class="message__link__site"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-icon-codepen.png" alt="Codepen Icon" /><span>CodePen</span></div>
+<div class="message__link__text"><strong><a class="link" href="https://codepen.io/oliviale/full/GPXozx" target="_blank" rel="noopener">Recipe Layout</a></strong>
+<p>My annual pen inspired by the Waitress musical 🥧</p>
+</div>
+<div class="message__image"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-recipe.jpg" alt="Showcase Image" /></div>
+</div>
+</div>
+</div>
+</div>
+<div class="channel__body__grouped">
+<div class="channel__body__day">
+<div class="channel__body__date"> <span>April 11, 2019</span></div>
+</div>
+<div class="message">
+<div class="message__profile"><img src="https://pbs.twimg.com/profile_images/930723320210767872/dL1TBczy_400x400.jpg" alt="Profile Picture" /></div>
+<div class="message__content">
+<div class="message__sender"><a class="name" href="https://twitter.com/juanmelano_" target="_blank" rel="noopener">juanmelano</a><span class="time js-time"></span></div>
+<div class="message__text"><a class="link" href="https://codepen.io/oliviale/full/mgWjpq" target="_blank" rel="noopener">
+https://codepen.io/oliviale/full/mgWjpq</a></div>
+<div class="message__link">
+<div class="message__link__site"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-icon-codepen.png" alt="Codepen Icon" /><span>CodePen</span></div>
+ <div class="message__link__text"><strong><a class="link" href="https://codepen.io/oliviale/full/mgWjpq" target="_blank" rel="noopener">A Style Guide</a></strong>
+<p>What could go wrong if I were to do a style guide with 5 color palettes without any planning? Narrator: A lot of things could go wrong.</p>
+</div>
+<div class="message__image"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-style.jpg" alt="Showcase Image" /></div>
+</div>
+</div>
+</div>
+</div>
+<div class="channel__body__grouped">
+<div class="channel__body__day">
+<div class="channel__body__date"> <span>June 17, 2019</span></div>
+</div>
+<div class="message">
+<div class="message__profile"><img src="https://pbs.twimg.com/profile_images/930723320210767872/dL1TBczy_400x400.jpg" alt="Profile Picture" /></div>
+<div class="message__content">
+<div class="message__sender"><a class="name" href="https://twitter.com/juanmelano_" target="_blank" rel="noopener">juanmelano</a><span class="time js-time"></span></div>
+<div class="message__text"><a class="link" href="https://codepen.io/oliviale/full/WqwOzv" target="_blank" rel="noopener">
+https://codepen.io/oliviale/full/WqwOzv</a></div>
+<div class="message__link">
+<div class="message__link__site"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-icon-codepen.png" alt="Codepen Icon" /><span>CodePen</span></div>
+<div class="message__link__text"><strong><a class="link" href="https://codepen.io/oliviale/full/WqwOzv" target="_blank" rel="noopener">Media Cards</a></strong>
+<p>Cards have the same HTML structure, altered with CSS Grid.</p>
+</div>
+<div class="message__image"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-media-cards.jpg" alt="Showcase Image" /></div>
+</div>
+</div>
+</div>
+</div>
+<div class="channel__body__grouped">
+<div class="channel__body__day">
+<div class="channel__body__date"> <span>November 10, 2019</span></div>
+</div>
+<div class="message">
+<div class="message__profile"><img src="https://pbs.twimg.com/profile_images/930723320210767872/dL1TBczy_400x400.jpg" alt="Profile Picture" /></div>
+<div class="message__content">
+<div class="message__sender"><a class="name" href="https://twitter.com/juanmelano_" target="_blank" rel="noopener">juanmelano</a><span class="time js-time"></span></div>
+<div class="message__text"><a class="link" href="https://codepen.io/oliviale/full/LYYrKMV" target="_blank" rel="noopener">
+https://codepen.io/oliviale/full/LYYrKMV</a></div>
+<div class="message__link">
+<div class="message__link__site"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-icon-codepen.png" alt="Codepen Icon" /><span>CodePen</span></div>
+<div class="message__link__text"><strong><a class="link" href="https://codepen.io/oliviale/full/LYYrKMV" target="_blank" rel="noopener">Restaurant Menu</a></strong>
+<p>Restaurant websites with useful information seem like a rarity these days...</p>
+</div>
+<div class="message__image"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-menu.jpg" alt="Showcase Image" /></div>
+</div>
+</div>
+</div>
+</div>
+<div class="channel__body__grouped">
+<div class="channel__body__day">
+<div class="channel__body__date"> <span>Friday, January 31</span></div>
+</div>
+<div class="message">
+<div class="message__profile"><img src="https://pbs.twimg.com/profile_images/930723320210767872/dL1TBczy_400x400.jpg" alt="Profile Picture" /></div>
+<div class="message__content">
+<div class="message__sender"><a class="name" href="https://twitter.com/juanmelano_" target="_blank" rel="noopener">juanmelano</a><span class="time js-time"></span></div>
+<div class="message__text"><a class="link" href="https://codepen.io/oliviale/full/xxboXzo" target="_blank" rel="noopener">
+https://codepen.io/oliviale/full/xxboXzo</a></div>
+<div class="message__link">
+<div class="message__link__site"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-icon-codepen.png" alt="Codepen Icon" /><span>CodePen</span></div>
+<div class="message__link__text"><strong><a class="link" href="https://codepen.io/oliviale/full/xxboXzo" target="_blank" rel="noopener">Toggles</a></strong>
+<p>Do you want your toggle fancy or functional? Yes.</p>
+</div>
+<div class="message__image"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-toggle.gif" alt="Showcase Image" /></div>
+</div>
+</div>
+</div>
+</div>
+<div class="channel__body__grouped">
+<div class="channel__body__day">
+<div class="channel__body__date"> <span>Friday, March 27</span></div>
+</div>
+<div class="message">
+<div class="message__profile"><img src="https://pbs.twimg.com/profile_images/930723320210767872/dL1TBczy_400x400.jpg" alt="Profile Picture" /></div>
+<div class="message__content">
+<div class="message__sender"><a class="name" href="https://twitter.com/juanmelano_" target="_blank" rel="noopener">juanmelano</a><span class="time js-time"></span></div>
+<div class="message__text"><a class="link" href="https://codepen.io/oliviale/full/oNXJgEM" target="_blank" rel="noopener">
+https://codepen.io/oliviale/full/oNXJgEM</a></div>
+<div class="message__link">
+<div class="message__link__site"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-icon-codepen.png" alt="Codepen Icon" /><span>CodePen</span></div>
+<div class="message__link__text"><strong><a class="link" href="https://codepen.io/oliviale/full/oNXJgEM" target="_blank" rel="noopener">To-Do Terrarium</a></strong>
+<p>Not just a to-do list, it's a covid quarantine to-do list. Made with GSAP.</p>
+</div>
+<div class="message__image"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-terrarium.jpg" alt="Showcase Image" /></div>
+</div>
+</div>
+</div>
+</div>
+<div class="channel__body__grouped" id="ui-design-last">
+<div class="channel__body__day">
+<div class="channel__body__date"> <span>Thursday, April 23</span></div>
+</div>
+<div class="message">
+<div class="message__profile"><img src="https://pbs.twimg.com/profile_images/930723320210767872/dL1TBczy_400x400.jpg" alt="Profile Picture" /></div>
+<div class="message__content">
+<div class="message__sender"><a class="name" href="https://twitter.com/juanmelano_" target="_blank" rel="noopener">juanmelano</a><span class="time js-time"></span></div>
+<div class="message__text"><a class="link" href="https://codepen.io/oliviale/full/RwWKybY" target="_blank" rel="noopener">
+https://codepen.io/oliviale/full/RwWKybY</a></div>
+<div class="message__link">
+<div class="message__link__site"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-icon-codepen.png" alt="Codepen Icon" /><span>CodePen</span></div>
+<div class="message__link__text"><strong><a class="link" href="https://codepen.io/oliviale/full/RwWKybY" target="_blank" rel="noopener">A Workout Schedule</a></strong>
+<p>It's a 30-day challenge, so why do I need 50 days?</p>
+</div>
+<div class="message__image"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-workout.jpg" alt="Showcase Image" /></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="channel__input">
+<input type="text" placeholder="Jot something down" />
+<button class="js-emoji"><i class="icon-emotsmile"></i></button>
+</div>
+</div>
+<div class="channel" id="js-things">
+<div class="channel__header">
+<h2>#js-things</h2>
+<div class="channel__header__info"> <i class="icon-rocket"></i><span>3 pens</span><span class="explanation">I don't do much JS, but when I do, it's jQuery.</span></div>
+</div>
+<div class="channel__body">
+<div class="channel__body__grouped">
+<div class="channel__body__day">
+<div class="channel__body__date"> <span>May 25, 2019</span></div>
+</div>
+<div class="message">
+<div class="message__profile"><img src="https://pbs.twimg.com/profile_images/930723320210767872/dL1TBczy_400x400.jpg" alt="Profile Picture" /></div>
+<div class="message__content">
+<div class="message__sender"><a class="name" href="https://twitter.com/juanmelano_" target="_blank" rel="noopener">juanmelano</a><span class="time js-time"></span></div>
+<div class="message__text"><a class="link" href="https://codepen.io/oliviale/full/earYeG" target="_blank" rel="noopener">
+https://codepen.io/oliviale/full/earYeG</a></div>
+<div class="message__link">
+<div class="message__link__site"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-icon-codepen.png" alt="Codepen Icon" /><span>CodePen</span></div>
+<div class="message__link__text"><strong><a class="link" href="https://codepen.io/oliviale/full/earYeG" target="_blank" rel="noopener">Feed The Picky Eater</a></strong>
+<p>A birthday gift for the pickiest eater I know.</p>
+</div>
+<div class="message__image"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-eater.jpg" alt="Showcase Image" /></div>
+</div>
+</div>
+</div>
+</div>
+<div class="channel__body__grouped">
+<div class="channel__body__day">
+<div class="channel__body__date"> <span>Sunday, April 12</span></div>
+</div>
+<div class="message">
+<div class="message__profile"><img src="https://pbs.twimg.com/profile_images/930723320210767872/dL1TBczy_400x400.jpg" alt="Profile Picture" /></div>
+<div class="message__content">
+<div class="message__sender"><a class="name" href="https://twitter.com/juanmelano_" target="_blank" rel="noopener">juanmelano</a><span class="time js-time"></span></div>
+<div class="message__text"><a class="link" href="https://codepen.io/oliviale/full/zYvxXWw" target="_blank" rel="noopener">
+https://codepen.io/oliviale/full/zYvxXWw</a></div>
+<div class="message__link">
+<div class="message__link__site"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-icon-codepen.png" alt="Codepen Icon" /><span>CodePen</span></div>
+<div class="message__link__text"><strong><a class="link" href="https://codepen.io/oliviale/full/zYvxXWw" target="_blank" rel="noopener">Pasta Menu</a></strong>
+<p>Changing pasta menu icons and sections with GSAP.</p>
+</div>
+<div class="message__image"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-pasta.jpg" alt="Showcase Image" /></div>
+</div>
+</div>
+</div>
+</div>
+<div class="channel__body__grouped" id="js-things-last">
+<div class="channel__body__day">
+<div class="channel__body__date"> <span>Tuesday, April 14</span></div>
+</div>
+<div class="message">
+<div class="message__profile"><img src="https://pbs.twimg.com/profile_images/930723320210767872/dL1TBczy_400x400.jpg" alt="Profile Picture" /></div>
+<div class="message__content">
+<div class="message__sender"><a class="name" href="https://twitter.com/juanmelano_" target="_blank" rel="noopener">juanmelano</a><span class="time js-time"></span></div>
+<div class="message__text"><a class="link" href="https://codepen.io/oliviale/full/QWjjrZX" target="_blank" rel="noopener">
+https://codepen.io/oliviale/full/QWjjrZX</a></div>
+<div class="message__link">
+<div class="message__link__site"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-icon-codepen.png" alt="Codepen Icon" /><span>CodePen</span></div>
+<div class="message__link__text"><strong><a class="link" href="https://codepen.io/oliviale/full/QWjjrZX" target="_blank" rel="noopener">Social Distancing</a></strong>
+<p>A friendly reminder during these tough times #StayTheFuckHome</p>
+</div>
+<div class="message__image"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-social.gif" alt="Showcase Image" /></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="channel__input">
+<input type="text" placeholder="Jot something down" />
+<button class="js-emoji"><i class="icon-emotsmile"></i></button>
+</div>
+</div>
+<div class="channel" id="css-grid">
+<div class="channel__header">
+<h2>#css-grid</h2>
+<div class="channel__header__info"> <i class="icon-rocket"></i><span>5 pens</span><span class="explanation">Is it easier to use Flex? Maybe. But CSS Grid tho.</span></div>
+</div>
+<div class="channel__body">
+<div class="channel__body__grouped">
+<div class="channel__body__day">
+<div class="channel__body__date"> <span>December 26, 2018</span></div>
+</div>
+<div class="message">
+<div class="message__profile"><img src="https://pbs.twimg.com/profile_images/930723320210767872/dL1TBczy_400x400.jpg" alt="Profile Picture" /></div>
+<div class="message__content">
+<div class="message__sender"><a class="name" href="https://twitter.com/juanmelano_" target="_blank" rel="noopener">juanmelano</a><span class="time js-time"></span></div>
+<div class="message__text"><a class="link" href="https://codepen.io/oliviale/full/aPwaXm" target="_blank" rel="noopener">
+https://codepen.io/oliviale/full/aPwaXm</a></div>
+<div class="message__link">
+<div class="message__link__site"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-icon-codepen.png" alt="Codepen Icon" /><span>CodePen</span></div>
+<div class="message__link__text"><strong><a class="link" href="https://codepen.io/oliviale/full/aPwaXm" target="_blank" rel="noopener">Bullet Journal</a></strong>
+<p>When you can't afford to buy a Moleskine and nice stationery for bullet journaling, so you code it up instead.</p>
+</div>
+<div class="message__image"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-bujo.jpg" alt="Showcase Image" /></div>
+</div>
+</div>
+</div>
+</div>
+<div class="channel__body__grouped">
+<div class="channel__body__day">
+<div class="channel__body__date"> <span>February 1, 2019</span></div>
+</div>
+<div class="message">
+<div class="message__profile"><img src="https://pbs.twimg.com/profile_images/930723320210767872/dL1TBczy_400x400.jpg" alt="Profile Picture" /></div>
+<div class="message__content">
+<div class="message__sender"><a class="name" href="https://twitter.com/juanmelano_" target="_blank" rel="noopener">juanmelano</a><span class="time js-time"></span></div>
+<div class="message__text"><a class="link" href="https://codepen.io/oliviale/full/rPjgmB" target="_blank" rel="noopener">
+https://codepen.io/oliviale/full/rPjgmB</a></div>
+<div class="message__link">
+<div class="message__link__site"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-icon-codepen.png" alt="Codepen Icon" /><span>CodePen</span></div>
+<div class="message__link__text"><strong><a class="link" href="https://codepen.io/oliviale/full/rPjgmB" target="_blank" rel="noopener">Excel Spreadsheet</a></strong>
+<p>A recreation of Microsoft Excel, that is all.</p>
+</div>
+<div class="message__image"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-excel.jpg" alt="Showcase Image" /></div>
+</div>
+</div>
+</div>
+</div>
+<div class="channel__body__grouped">
+<div class="channel__body__day">
+<div class="channel__body__date"> <span>March 16, 2019</span></div>
+</div>
+<div class="message">
+<div class="message__profile"><img src="https://pbs.twimg.com/profile_images/930723320210767872/dL1TBczy_400x400.jpg" alt="Profile Picture" /></div>
+<div class="message__content">
+<div class="message__sender"><a class="name" href="https://twitter.com/juanmelano_" target="_blank" rel="noopener">juanmelano</a><span class="time js-time"></span></div>
+<div class="message__text"><a class="link" href="https://codepen.io/oliviale/full/moLrBq" target="_blank" rel="noopener">
+https://codepen.io/oliviale/full/moLrBq</a></div>
+<div class="message__link">
+<div class="message__link__site"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-icon-codepen.png" alt="Codepen Icon" /><span>CodePen</span></div>
+<div class="message__link__text"><strong><a class="link" href="https://codepen.io/oliviale/full/moLrBq" target="_blank" rel="noopener">A Floor Plan</a></strong>
+<p>My ideal floor plan, with lots of space for the dogs and cats to run around.</p>
+</div>
+<div class="message__image"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-floorplan.jpg" alt="Showcase Image" /></div>
+</div>
+</div>
+</div>
+</div>
+<div class="channel__body__grouped">
+<div class="channel__body__day">
+<div class="channel__body__date"> <span>May 24, 2019</span></div>
+</div>
+<div class="message">
+<div class="message__profile"><img src="https://pbs.twimg.com/profile_images/930723320210767872/dL1TBczy_400x400.jpg" alt="Profile Picture" /></div>
+<div class="message__content">
+<div class="message__sender"><a class="name" href="https://twitter.com/juanmelano_" target="_blank" rel="noopener">juanmelano</a><span class="time js-time"></span></div>
+<div class="message__text"><a class="link" href="https://codepen.io/oliviale/full/wbyVWr" target="_blank" rel="noopener">
+https://codepen.io/oliviale/full/wbyVWr</a></div>
+<div class="message__link">
+<div class="message__link__site"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-icon-codepen.png" alt="Codepen Icon" /><span>CodePen</span></div>
+<div class="message__link__text"><strong><a class="link" href="https://codepen.io/oliviale/full/wbyVWr" target="_blank" rel="noopener">Grocery Coupons</a></strong>
+<p>Inspired by junk mail, here are coupons made for a fictional grocery store, featuring snacks when I pull my all-nighters.</p>
+</div>
+<div class="message__image"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-coupons.jpg" alt="Showcase Image" /></div>
+</div>
+</div>
+</div>
+</div>
+<div class="channel__body__grouped" id="css-grid-last">
+<div class="channel__body__day">
+<div class="channel__body__date"> <span>September 7, 2019</span></div>
+</div>
+<div class="message">
+<div class="message__profile"><img src="https://pbs.twimg.com/profile_images/930723320210767872/dL1TBczy_400x400.jpg" alt="Profile Picture" /></div>
+<div class="message__content">
+<div class="message__sender"><a class="name" href="https://twitter.com/juanmelano_" target="_blank" rel="noopener">juanmelano</a><span class="time js-time"></span></div>
+<div class="message__text"><a class="link" href="https://codepen.io/oliviale/full/GRKQoKM" target="_blank" rel="noopener">
+https://codepen.io/oliviale/full/GRKQoKM</a></div>
+<div class="message__link">
+<div class="message__link__site"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-icon-codepen.png" alt="Codepen Icon" /><span>CodePen</span></div>
+<div class="message__link__text"><strong><a class="link" href="https://codepen.io/oliviale/full/GRKQoKM" target="_blank" rel="noopener">Marvel Magazine</a></strong>
+<p>Wanted to do some magazine layouts, so I decided to create a Marvel Magazine. I regret everything.</p>
+</div>
+<div class="message__image"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-marvel.gif" alt="Showcase Image" /></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="channel__input">
+<input type="text" placeholder="Jot something down" />
+<button class="js-emoji"><i class="icon-emotsmile"></i></button>
+</div>
+</div>
+<div class="channel" id="css-illu">
+<div class="channel__header">
+<h2>#css-illustrations</h2>
+<div class="channel__header__info"> <i class="icon-rocket"></i><span>6 pens</span><span class="explanation">Why use SVG when you can use 32 divs?</span></div>
+</div>
+<div class="channel__body">
+<div class="channel__body__grouped">
+<div class="channel__body__day">
+<div class="channel__body__date"> <span>August 18, 2017</span></div>
+</div>
+<div class="message">
+<div class="message__profile"><img src="https://pbs.twimg.com/profile_images/930723320210767872/dL1TBczy_400x400.jpg" alt="Profile Picture" /></div>
+<div class="message__content">
+<div class="message__sender"><a class="name" href="https://twitter.com/juanmelano_" target="_blank" rel="noopener">juanmelano</a><span class="time js-time"></span></div>
+<div class="message__text"><a class="link" href="https://codepen.io/oliviale/full/GvQrxj" target="_blank" rel="noopener">
+https://codepen.io/oliviale/full/GvQrxj</a></div>
+<div class="message__link">
+<div class="message__link__site"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-icon-codepen.png" alt="Codepen Icon" /><span>CodePen</span></div>
+<div class="message__link__text"><strong><a class="link" href="https://codepen.io/oliviale/full/GvQrxj" target="_blank" rel="noopener">Sugar, Butter, Flour</a></strong>
+<p>Sugar, Butter, Flour - the catchphrase in the musical 'Waitress'.</p>
+</div>
+<div class="message__image"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-sugar.gif" alt="Showcase Image" /></div>
+</div>
+</div>
+</div>
+</div>
+<div class="channel__body__grouped">
+<div class="channel__body__day">
+<div class="channel__body__date"> <span>December 19, 2018</span></div>
+</div>
+<div class="message">
+<div class="message__profile"><img src="https://pbs.twimg.com/profile_images/930723320210767872/dL1TBczy_400x400.jpg" alt="Profile Picture" /></div>
+<div class="message__content">
+<div class="message__sender"><a class="name" href="https://twitter.com/juanmelano_" target="_blank" rel="noopener">juanmelano</a><span class="time js-time"></span></div>
+<div class="message__text"><a class="link" href="https://codepen.io/oliviale/full/PXGgMG" target="_blank" rel="noopener">
+https://codepen.io/oliviale/full/PXGgMG</a></div>
+<div class="message__link">
+<div class="message__link__site"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-icon-codepen.png" alt="Codepen Icon" /><span>CodePen</span></div>
+<div class="message__link__text"><strong><a class="link" href="https://codepen.io/oliviale/full/PXGgMG" target="_blank" rel="noopener">A Shelf!</a></strong>
+<p>A CSS shelf, featuring things that I've never owned in my life.</p>
+</div>
+<div class="message__image"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-shelf.jpg" alt="Showcase Image" /></div>
+</div>
+</div>
+</div>
+</div>
+<div class="channel__body__grouped">
+<div class="channel__body__day">
+<div class="channel__body__date"> <span>January 7, 2019</span></div>
+</div>
+<div class="message">
+<div class="message__profile"><img src="https://pbs.twimg.com/profile_images/930723320210767872/dL1TBczy_400x400.jpg" alt="Profile Picture" /></div>
+<div class="message__content">
+<div class="message__sender"><a class="name" href="https://twitter.com/juanmelano_" target="_blank" rel="noopener">juanmelano</a><span class="time js-time"></span></div>
+<div class="message__text"><a class="link" href="https://codepen.io/oliviale/full/qLYNbE" target="_blank" rel="noopener">
+https://codepen.io/oliviale/full/qLYNbE</a></div>
+<div class="message__link">
+<div class="message__link__site"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-icon-codepen.png" alt="Codepen Icon" /><span>CodePen</span></div>
+<div class="message__link__text"><strong><a class="link" href="https://codepen.io/oliviale/full/qLYNbE" target="_blank" rel="noopener">An Emoji Factory</a></strong>
+<p>I've always wanted an emoji with fire eyes... decided to build this little factory so I can make whatever emoji I want.</p>
+</div>
+<div class="message__image"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-emoji.jpg" alt="Showcase Image" /></div>
+</div>
+</div>
+</div>
+</div>
+<div class="channel__body__grouped">
+<div class="channel__body__day">
+<div class="channel__body__date"> <span>January 13, 2019</span></div>
+</div>
+<div class="message">
+<div class="message__profile"><img src="https://pbs.twimg.com/profile_images/930723320210767872/dL1TBczy_400x400.jpg" alt="Profile Picture" /></div>
+<div class="message__content">
+<div class="message__sender"><a class="name" href="https://twitter.com/juanmelano_" target="_blank" rel="noopener">juanmelano</a><span class="time js-time"></span></div>
+<div class="message__text"><a class="link" href="https://codepen.io/oliviale/full/MZZYyO" target="_blank" rel="noopener">
+https://codepen.io/oliviale/full/MZZYyO</a></div>
+<div class="message__link">
+<div class="message__link__site"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-icon-codepen.png" alt="Codepen Icon" /><span>CodePen</span></div>
+<div class="message__link__text"><strong><a class="link" href="https://codepen.io/oliviale/full/MZZYyO" target="_blank" rel="noopener">Hogwarts Express Tickets</a></strong>
+<p>Reimagining a modern version of Hogwarts Express train tickets.</p>
+</div>
+<div class="message__image"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-hogwarts.jpg" alt="Showcase Image" /></div>
+</div>
+</div>
+</div>
+</div>
+<div class="channel__body__grouped">
+<div class="channel__body__day">
+<div class="channel__body__date"> <span>July 29, 2019</span></div>
+</div>
+<div class="message">
+<div class="message__profile"><img src="https://pbs.twimg.com/profile_images/930723320210767872/dL1TBczy_400x400.jpg" alt="Profile Picture" /></div>
+<div class="message__content">
+<div class="message__sender"><a class="name" href="https://twitter.com/juanmelano_" target="_blank" rel="noopener">juanmelano</a><span class="time js-time"></span></div>
+<div class="message__text"><a class="link" href="https://codepen.io/oliviale/full/MNJwBM" target="_blank" rel="noopener">
+https://codepen.io/oliviale/full/MNJwBM</a></div>
+<div class="message__link">
+<div class="message__link__site"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-icon-codepen.png" alt="Codepen Icon" /><span>CodePen</span></div>
+<div class="message__link__text"><strong><a class="link" href="https://codepen.io/oliviale/full/MNJwBM" target="_blank" rel="noopener">PacMan</a></strong>
+<p>A CSS take on the PacMan layout, with a twist inspired by Ingrid Michaelson's lyric video of the song, Missing You.</p>
+</div>
+<div class="message__image"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-pacman.jpg" alt="Showcase Image" /></div>
+</div>
+</div>
+</div>
+</div>
+<div class="channel__body__grouped" id="css-illu-last">
+<div class="channel__body__day">
+<div class="channel__body__date"> <span>November 23, 2019</span></div>
+</div>
+<div class="message">
+<div class="message__profile"><img src="https://pbs.twimg.com/profile_images/930723320210767872/dL1TBczy_400x400.jpg" alt="Profile Picture" /></div>
+<div class="message__content">
+<div class="message__sender"><a class="name" href="https://twitter.com/juanmelano_" target="_blank" rel="noopener">juanmelano</a><span class="time js-time"></span></div>
+<div class="message__text"><a class="link" href="https://codepen.io/oliviale/full/KKKYJZm" target="_blank" rel="noopener">
+https://codepen.io/oliviale/full/KKKYJZm</a></div>
+<div class="message__link">
+<div class="message__link__site"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-icon-codepen.png" alt="Codepen Icon" /><span>CodePen</span></div>
+<div class="message__link__text"><strong><a class="link" href="https://codepen.io/oliviale/full/KKKYJZm" target="_blank" rel="noopener">The Weasley Clock</a></strong>
+<p>A recreation of the Weasley Clock with moving clock hands. Annnndd... Ron is lost again.</p>
+</div>
+<div class="message__image"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-weasley.jpg" alt="Showcase Image" /></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="channel__input">
+<input type="text" placeholder="Jot something down" />
+<button class="js-emoji"><i class="icon-emotsmile"></i></button>
+</div>
+</div>
+<div class="channel" id="css-anim">
+<div class="channel__header">
+<h2>#css-animations</h2>
+<div class="channel__header__info"> <i class="icon-rocket"></i><span>7 pens</span><span class="explanation">Making things move with code.</span></div>
+</div>
+<div class="channel__body">
+<div class="channel__body__grouped">
+<div class="channel__body__day">
+<div class="channel__body__date"> <span>April 28, 2018</span></div>
+</div>
+<div class="message">
+<div class="message__profile"><img src="https://pbs.twimg.com/profile_images/930723320210767872/dL1TBczy_400x400.jpg" alt="Profile Picture" /></div>
+<div class="message__content">
+<div class="message__sender"><a class="name" href="https://twitter.com/juanmelano_" target="_blank" rel="noopener">juanmelano</a><span class="time js-time"></span></div>
+<div class="message__text"><a class="link" href="https://codepen.io/oliviale/full/WJoqNZ" target="_blank" rel="noopener">
+https://codepen.io/oliviale/full/WJoqNZ</a></div>
+<div class="message__link">
+<div class="message__link__site"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-icon-codepen.png" alt="Codepen Icon" /><span>CodePen</span></div>
+<div class="message__link__text"><strong><a class="link" href="https://codepen.io/oliviale/full/WJoqNZ" target="_blank" rel="noopener">Pies from the Waitress Musical</a></strong>
+<p>Even more pies. Showcasing slider animations.</p>
+</div>
+<div class="message__image"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-slideshow.gif" alt="Showcase Image" /></div>
+</div>
+</div>
+</div>
+</div>
+<div class="channel__body__grouped">
+<div class="channel__body__day">
+<div class="channel__body__date"> <span>August 27, 2018</span></div>
+</div>
+<div class="message">
+<div class="message__profile"><img src="https://pbs.twimg.com/profile_images/930723320210767872/dL1TBczy_400x400.jpg" alt="Profile Picture" /></div>
+<div class="message__content">
+<div class="message__sender"><a class="name" href="https://twitter.com/juanmelano_" target="_blank" rel="noopener">juanmelano</a><span class="time js-time"></span></div>
+<div class="message__text"><a class="link" href="https://codepen.io/oliviale/full/xaVXgw" target="_blank" rel="noopener">
+https://codepen.io/oliviale/full/xaVXgw</a></div>
+<div class="message__link">
+<div class="message__link__site"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-icon-codepen.png" alt="Codepen Icon" /><span>CodePen</span></div>
+<div class="message__link__text"><strong><a class="link" href="https://codepen.io/oliviale/full/xaVXgw" target="_blank" rel="noopener">Feature Showcase</a></strong>
+<p>&quot;We'll use screenshots for this.&quot; &quot;How about we make an animation instead?&quot; Actually something done for work.</p>
+</div>
+<div class="message__image"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-feature.jpg" alt="Showcase Image" /></div>
+</div>
+</div>
+</div>
+</div>
+<div class="channel__body__grouped">
+<div class="channel__body__day">
+<div class="channel__body__date"> <span>January 27, 2019</span></div>
+</div>
+<div class="message">
+<div class="message__profile"><img src="https://pbs.twimg.com/profile_images/930723320210767872/dL1TBczy_400x400.jpg" alt="Profile Picture" /></div>
+<div class="message__content">
+<div class="message__sender"><a class="name" href="https://twitter.com/juanmelano_" target="_blank" rel="noopener">juanmelano</a><span class="time js-time"></span></div>
+<div class="message__text"><a class="link" href="https://codepen.io/oliviale/full/ZwWbNg" target="_blank" rel="noopener">
+https://codepen.io/oliviale/full/ZwWbNg</a></div>
+<div class="message__link">
+<div class="message__link__site"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-icon-codepen.png" alt="Codepen Icon" /><span>CodePen</span></div>
+<div class="message__link__text"><strong><a class="link" href="https://codepen.io/oliviale/full/ZwWbNg" target="_blank" rel="noopener">Marauder's Map</a></strong>
+<p>Say &quot;I solemnly swear up to no good&quot; and watch the map unfold.</p>
+</div>
+<div class="message__image"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-marauder.gif" alt="Showcase Image" /></div>
+</div>
+</div>
+</div>
+</div>
+<div class="channel__body__grouped">
+<div class="channel__body__day">
+<div class="channel__body__date"> <span>February 26, 2019</span></div>
+</div>
+<div class="message">
+<div class="message__profile"><img src="https://pbs.twimg.com/profile_images/930723320210767872/dL1TBczy_400x400.jpg" alt="Profile Picture" /></div>
+<div class="message__content">
+<div class="message__sender"><a class="name" href="https://twitter.com/juanmelano_" target="_blank" rel="noopener">juanmelano</a><span class="time js-time"></span></div>
+<div class="message__text"><a class="link" href="https://codepen.io/oliviale/full/YgzNzK" target="_blank" rel="noopener">
+https://codepen.io/oliviale/full/YgzNzK</a></div>
+<div class="message__link">
+<div class="message__link__site"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-icon-codepen.png" alt="Codepen Icon" /><span>CodePen</span></div>
+<div class="message__link__text"><strong><a class="link" href="https://codepen.io/oliviale/full/YgzNzK" target="_blank" rel="noopener">Hover Effects for Headers</a></strong>
+<p>8 hover effects, featuring the most amazing things you can find on earth.</p>
+</div>
+<div class="message__image"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-header.jpg" alt="Showcase Image" /></div>
+</div>
+</div>
+</div>
+</div>
+<div class="channel__body__grouped">
+<div class="channel__body__day">
+<div class="channel__body__date"> <span>March 23, 2019</span></div>
+</div>
+<div class="message">
+<div class="message__profile"><img src="https://pbs.twimg.com/profile_images/930723320210767872/dL1TBczy_400x400.jpg" alt="Profile Picture" /></div>
+<div class="message__content">
+<div class="message__sender"><a class="name" href="https://twitter.com/juanmelano_" target="_blank" rel="noopener">juanmelano</a><span class="time js-time"></span></div>
+<div class="message__text"><a class="link" href="https://codepen.io/oliviale/full/vPvvyr" target="_blank" rel="noopener">
+https://codepen.io/oliviale/full/vPvvyr</a></div>
+<div class="message__link">
+<div class="message__link__site"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-icon-codepen.png" alt="Codepen Icon" /><span>CodePen</span></div>
+<div class="message__link__text"><strong><a class="link" href="https://codepen.io/oliviale/full/vPvvyr" target="_blank" rel="noopener">Obvious CTA Buttons</a></strong>
+<p>Terrible ways to make sure your users click that CTA button!</p>
+</div>
+<div class="message__image"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-button.jpg" alt="Showcase Image" /></div>
+</div>
+</div>
+</div>
+</div>
+<div class="channel__body__grouped" id="css-anim-last">
+<div class="channel__body__day">
+<div class="channel__body__date"> <span>Friday, April 17</span></div>
+</div>
+<div class="message">
+<div class="message__profile"><img src="https://pbs.twimg.com/profile_images/930723320210767872/dL1TBczy_400x400.jpg" alt="Profile Picture" /></div>
+<div class="message__content">
+<div class="message__sender"><a class="name" href="https://twitter.com/juanmelano_" target="_blank" rel="noopener">juanmelano</a><span class="time js-time"></span></div>
+<div class="message__text"><a class="link" href="https://codepen.io/oliviale/full/RwWaBdN" target="_blank" rel="noopener">
+https://codepen.io/oliviale/full/RwWaBdN</a></div>
+<div class="message__link">
+<div class="message__link__site"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-icon-codepen.png" alt="Codepen Icon" /><span>CodePen</span></div>
+<div class="message__link__text"><strong><a class="link" href="https://codepen.io/oliviale/full/RwWaBdN" target="_blank" rel="noopener">Nerf Gun Radio Button</a></strong>
+<p>An 'interesting' way for users to select a radio button. Never try in production.</p>
+</div>
+<div class="message__image"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-nerfgun.gif" alt="Showcase Image" /></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="channel__input">
+<input type="text" placeholder="Jot something down" />
+<button class="js-emoji"><i class="icon-emotsmile"></i></button>
+</div>
+</div>
+<div class="channel" id="collections">
+<div class="channel__header">
+<h2>#just-collections</h2>
+<div class="channel__header__info"> <i class="icon-grid"></i><span>6 collections</span><span class="explanation">Collections with a specific theme.</span></div>
+</div>
+<div class="channel__body">
+<div class="channel__body__grouped">
+<div class="channel__body__day">
+<div class="channel__body__date"> <span>Today</span></div>
+</div>
+<div class="message">
+<div class="message__profile"><img src="https://pbs.twimg.com/profile_images/930723320210767872/dL1TBczy_400x400.jpg" alt="Profile Picture" /></div>
+<div class="message__content">
+<div class="message__sender"><a class="name" href="https://twitter.com/juanmelano_" target="_blank" rel="noopener">juanmelano</a><span class="time">12:45AM</span></div>
+<div class="message__text"><a class="link" href="https://codepen.io/collection/ANgNEw" target="_blank" rel="noopener">
+https://codepen.io/collection/ANgNEw</a></div>
+<div class="message__link">
+<div class="message__link__site"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-icon-codepen.png" alt="Codepen Icon" /><span>CodePen</span></div>
+<div class="message__link__text"><strong><a class="link" href="https://codepen.io/collection/ANgNEw" target="_blank" rel="noopener">Factories</a></strong>
+<p>Generators to help you create achievement medals or your very own emoji.</p>
+</div>
+<div class="message__image"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-co-factories.jpg" alt="Showcase Image" /></div>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="message__profile"><img src="https://pbs.twimg.com/profile_images/930723320210767872/dL1TBczy_400x400.jpg" alt="Profile Picture" /></div>
+<div class="message__content">
+<div class="message__sender"><a class="name" href="https://twitter.com/juanmelano_" target="_blank" rel="noopener">juanmelano</a><span class="time">12:45AM</span></div>
+<div class="message__text"><a class="link" href="https://codepen.io/collection/XPWkdW" target="_blank" rel="noopener">
+https://codepen.io/collection/XPWkdW</a></div>
+<div class="message__link">
+<div class="message__link__site"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-icon-codepen.png" alt="Codepen Icon" /><span>CodePen</span></div>
+<div class="message__link__text"><strong><a class="link" href="https://codepen.io/collection/XPWkdW" target="_blank" rel="noopener">Musicals</a></strong>
+<p>Pens inspired by Broadway musicals 🎵</p>
+</div>
+<div class="message__image"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-co-musical.jpg" alt="Showcase Image" /></div>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="message__profile"><img src="https://pbs.twimg.com/profile_images/930723320210767872/dL1TBczy_400x400.jpg" alt="Profile Picture" /></div>
+<div class="message__content">
+<div class="message__sender"><a class="name" href="https://twitter.com/juanmelano_" target="_blank" rel="noopener">juanmelano</a><span class="time">12:45AM</span></div>
+<div class="message__text"><a class="link" href="https://codepen.io/collection/DjwqvK" target="_blank" rel="noopener">
+https://codepen.io/collection/DjwqvK</a></div>
+<div class="message__link">
+<div class="message__link__site"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-icon-codepen.png" alt="Codepen Icon" /><span>CodePen</span></div>
+<div class="message__link__text"><strong><a class="link" href="https://codepen.io/collection/DjwqvK" target="_blank" rel="noopener">A Harry Potter Collection</a></strong>
+<p>Yerr in a collection, 'arry!</p>
+</div>
+<div class="message__image"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-co-hp.jpg" alt="Showcase Image" /></div>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="message__profile"><img src="https://pbs.twimg.com/profile_images/930723320210767872/dL1TBczy_400x400.jpg" alt="Profile Picture" /></div>
+<div class="message__content">
+<div class="message__sender"><a class="name" href="https://twitter.com/juanmelano_" target="_blank" rel="noopener">juanmelano</a><span class="time">12:45AM</span></div>
+<div class="message__text"><a class="link" href="https://codepen.io/collection/XJNKLz" target="_blank" rel="noopener">
+https://codepen.io/collection/XJNKLz</a></div>
+<div class="message__link">
+<div class="message__link__site"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-icon-codepen.png" alt="Codepen Icon" /><span>CodePen</span></div>
+<div class="message__link__text"><strong><a class="link" href="https://codepen.io/collection/XJNKLz" target="_blank" rel="noopener">CSS Animations</a></strong>
+<p>Much animating, such swoosh</p>
+</div>
+<div class="message__image"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-co-anim.jpg" alt="Showcase Image" /></div>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="message__profile"><img src="https://pbs.twimg.com/profile_images/930723320210767872/dL1TBczy_400x400.jpg" alt="Profile Picture" /></div>
+<div class="message__content">
+<div class="message__sender"><a class="name" href="https://twitter.com/juanmelano_" target="_blank" rel="noopener">juanmelano</a><span class="time">12:45AM</span></div>
+<div class="message__text"><a class="link" href="https://codepen.io/collection/XJyNPm" target="_blank" rel="noopener">
+https://codepen.io/collection/XJyNPm</a></div>
+<div class="message__link">
+<div class="message__link__site"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-icon-codepen.png" alt="Codepen Icon" /><span>CodePen</span></div>
+<div class="message__link__text"><strong><a class="link" href="https://codepen.io/collection/XJyNPm" target="_blank" rel="noopener">A Style Guide</a></strong>
+<p>A style guide with 5 different color palettes and various UI solutions. An experiment inspired by Brad Frost's Atomic Design methodology.</p>
+</div>
+<div class="message__image"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-co-style.jpg" alt="Showcase Image" /></div>
+</div>
+</div>
+</div>
+<div class="message" id="collections-last">
+<div class="message__profile"><img src="https://pbs.twimg.com/profile_images/930723320210767872/dL1TBczy_400x400.jpg" alt="Profile Picture" /></div>
+<div class="message__content">
+<div class="message__sender"><a class="name" href="https://twitter.com/juanmelano_" target="_blank" rel="noopener">juanmelano</a><span class="time">1:05AM</span></div>
+<div class="message__text"><a class="link" href="https://codepen.io/collection/DQvYpQ" target="_blank" rel="noopener">
+https://codepen.io/collection/DQvYpQ</a></div>
+<div class="message__link">
+<div class="message__link__site"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-icon-codepen.png" alt="Codepen Icon" /><span>CodePen</span></div>
+<div class="message__link__text"><strong><a class="link" href="https://codepen.io/collection/DQvYpQ" target="_blank" rel="noopener">CSS Grid Experiments</a></strong>
+<p>32 pens of CSS Grid - mostly things that shouldn't be using Grid.</p>
+</div>
+<div class="message__image"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-co-grid.jpg" alt="Showcase Image" /></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="channel__input">
+<input type="text" placeholder="Jot something down" />
+<button class="js-emoji"><i class="icon-emotsmile"></i></button>
+</div>
+</div>
+<div class="channel" id="self">
+<div class="channel__header">
+<h2> <i class="circle"></i>juanmelano</h2>
+</div>
+<div class="channel__body">
+<div class="channel__body__grouped">
+<div class="channel__body__day">
+<div class="channel__body__date"> <span>Wednesday, April 1</span></div>
+</div>
+<div class="message">
+<div class="message__profile"><img src="https://pbs.twimg.com/profile_images/930723320210767872/dL1TBczy_400x400.jpg" alt="Profile Picture" /></div>
+<div class="message__content">
+<div class="message__sender"><a class="name" href="https://twitter.com/juanmelano_" target="_blank" rel="noopener">juanmelano</a><span class="time">2:34 PM</span></div>
+<div class="message__text">It's <code>box-sizing: border-box</code>, not <code>border-box: box-sizing</code>... 🙄</div>
+</div>
+</div>
+</div>
+<div class="channel__body__grouped">
+<div class="channel__body__day">
+<div class="channel__body__date"> <span>Saturday, April 4</span></div>
+</div>
+<div class="message">
+<div class="message__profile"><img src="https://pbs.twimg.com/profile_images/930723320210767872/dL1TBczy_400x400.jpg" alt="Profile Picture" /></div>
+<div class="message__content">
+<div class="message__sender"><a class="name" href="https://twitter.com/juanmelano_" target="_blank" rel="noopener">juanmelano</a><span class="time">5:10 PM</span></div>
+<div class="message__text">Can we replicate this in CSS? </div>
+<div class="message__image"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-noface.jpg" alt="Showcase Image" /></div>
+</div>
+</div>
+<div class="message">
+<div class="message__profile"><img src="https://pbs.twimg.com/profile_images/930723320210767872/dL1TBczy_400x400.jpg" alt="Profile Picture" /></div>
+<div class="message__content">
+<div class="message__sender"><a class="name" href="https://twitter.com/juanmelano_" target="_blank" rel="noopener">juanmelano</a><span class="time">5:11 PM</span></div>
+<div class="message__text">Lol good joke</div>
+</div>
+</div>
+</div>
+<div class="channel__body__grouped">
+<div class="channel__body__day">
+<div class="channel__body__date"> <span>Wednesday, April 15</span></div>
+</div>
+<div class="message">
+<div class="message__profile"><img src="https://pbs.twimg.com/profile_images/930723320210767872/dL1TBczy_400x400.jpg" alt="Profile Picture" /></div>
+<div class="message__content">
+<div class="message__sender"><a class="name" href="https://twitter.com/juanmelano_" target="_blank" rel="noopener">juanmelano</a><span class="time">12:55 PM</span></div>
+<div class="message__text">
+<p>Friendly self reminder that you haven't done anything Harry Potter-related in a while and that is unacceptable.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="channel__body__grouped">
+<div class="channel__body__day">
+<div class="channel__body__date"> <span>Monday, April 20</span></div>
+</div>
+<div class="message">
+<div class="message__profile"><img src="https://pbs.twimg.com/profile_images/930723320210767872/dL1TBczy_400x400.jpg" alt="Profile Picture" /></div>
+<div class="message__content">
+<div class="message__sender"><a class="name" href="https://twitter.com/juanmelano_" target="_blank" rel="noopener">juanmelano</a><span class="time">9:16 PM</span></div>
+<div class="message__text"><strong>Codepen To-do:</strong>
+<p class="list">✅ Sketch out idea<br />✅ Code framework<br />⬜
+<strike>Make pen responsive</strike><span> nvm, not enough time</span><br />✅ Make pen public<br />✅ Post it on Twitter
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="channel__body__grouped">
+<div class="channel__body__day">
+<div class="channel__body__date"> <span>Yesterday</span></div>
+</div>
+<div class="message" id="self-last">
+<div class="message__profile"><img src="https://pbs.twimg.com/profile_images/930723320210767872/dL1TBczy_400x400.jpg" alt="Profile Picture" /></div>
+<div class="message__content">
+<div class="message__sender"><a class="name" href="https://twitter.com/juanmelano_" target="_blank" rel="noopener">juanmelano</a><span class="time">3:55 AM</span></div>
+<div class="message__text">This pen 🙃😭🙃😭</div>
+<div class="message__image"><img src="https://media.giphy.com/media/15ddqrBmBRwsg/giphy.gif" alt="My feelings in GIF" /></div>
+</div>
+</div>
+</div>
+</div>
+<div class="channel__input">
+<input type="text" placeholder="Jot something down" />
+<button><i class="icon-emotsmile"></i></button>
+</div>
+</div>
+</section>
+</main>
+<div class="emoji-roll">😃</div>
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-157cd5b220a5c80d4ff8e0e70ac069bffd87a61252088146915e8726e5d9f147.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+<script id="rendered-js">
+function scrollBottom(el) {
+  var div = el + '-last';
+  document.getElementById(div).scrollIntoView(true);
+}
+
+$(document).ready(function () {
+  scrollBottom('ui-design');
+  randomizeTime();
+});
+
+$('a.sections__item').on('click', function () {
+  var sectionToShow = $(this).data('switch');
+  $('.sections__item, .channel').removeClass('active');
+  $(this).addClass('active');
+  $('#' + sectionToShow).addClass('active');
+  scrollBottom(sectionToShow);
+});
+
+function randomizeTime() {
+  $(".js-time").each(function () {
+    var time = Math.floor(Math.random() * 12) + 1 + ':' + (Math.floor(Math.random() * 50) + 10) + ' AM';
+    $(this).text(time);
+  });
+
+}
+
+$('.js-emoji').on('click', function () {
+  $('.emoji-roll').toggleClass('active');
+  setTimeout(function () {
+    $('.emoji-roll').removeClass('active');
+  }, 2500);
+});
+//# sourceURL=pen.js
+    </script>
+</body>
+</html>
