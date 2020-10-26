@@ -1,0 +1,26 @@
+
+html, body {margin: 0; padding: 0; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; background-color: #0f0c0b;}
+a, a:link, a:visited {color: white; font-size: 0.88em; text-decoration: none;}
+section {width: 100%; display: grid; flex-direction: column; justify-content: center; align-items: center; }
+
+
+p  { margin: 0; font-family: "Source Sans Pro"; display: block; font-size: 0.9em; line-height: 24px; font-weight:400; color: rgba(0, 0, 0, 0.76); padding: 0px 20px; color: white}
+.footer {color: rgba(0, 0, 0, 0.46); text-align: center;}
+img.art {width: 100%;}
+small { font-family: sans-serif; font-size: 0.7em; padding: 1em; color: #999;}
+
+
+
+
+
+
+
+.content {
+            display: grid;
+            height: 100%;
+        }
+        .comic img {
+            max-width: 100%;
+            max-height: 100vh;
+            margin: auto;
+        }
